@@ -13,10 +13,16 @@ import {
 import { AdminInventoryItem } from "../../inventory"
 
 export interface AdminProductResponse {
+  /**
+   * The product's details.
+   */
   product: AdminProduct
 }
 
 export type AdminProductListResponse = PaginatedResponse<{
+  /**
+   * The list of products.
+   */
   products: AdminProduct[]
 }>
 
@@ -30,6 +36,9 @@ export interface AdminProductVariantResponse {
 }
 
 export type AdminProductVariantListResponse = PaginatedResponse<{
+  /**
+   * The list of product variants.
+   */
   variants: AdminProductVariant[]
 }>
 
@@ -37,13 +46,29 @@ export interface AdminProductVariantDeleteResponse
   extends DeleteResponseWithParent<"variant", AdminProduct> {}
 
 export interface AdminExportProductResponse {
+  /**
+   * The ID of the export product workflow's transaction.
+   */
   transaction_id: string
 }
 
 export interface AdminImportProductResponse {
+  /**
+   * The ID of the import product workflow execution's transaction. 
+   * This is useful to confirm the import using the `/admin/products/:transaction-id/import` API route.
+   */
   transaction_id: string
+  /**
+   * Details of the products to create or update when the import is confirmed.
+   */
   summary: {
+    /**
+     * The number of products that will be created by the import.
+     */
     toCreate: number
+    /**
+     * The number of products that will be updated by the import.
+     */
     toUpdate: number
   }
 }
@@ -55,10 +80,16 @@ export interface AdminBatchProductVariantInventoryItemResponse
   extends BatchResponse<AdminInventoryItem> {}
 
 export interface AdminProductOptionResponse {
+  /**
+   * The product option's details.
+   */
   product_option: AdminProductOption
 }
 
 export type AdminProductOptionListResponse = PaginatedResponse<{
+  /**
+   * The list of product options.
+   */
   product_options: AdminProductOption[]
 }>
 

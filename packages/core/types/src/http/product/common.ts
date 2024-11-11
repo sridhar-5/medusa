@@ -282,11 +282,29 @@ export interface BaseProductOption {
 }
 
 export interface BaseProductImage {
+  /**
+   * The image's ID.
+   */
   id: string
+  /**
+   * The image's URL.
+   */
   url: string
+  /**
+   * The date the image was created.
+   */
   created_at?: string
+  /**
+   * The date the image was updated.
+   */
   updated_at?: string
+  /**
+   * The date the image was deleted.
+   */
   deleted_at?: string | null
+  /**
+   * Key-value pairs of custom data.
+   */
   metadata?: Record<string, unknown> | null
 }
 
