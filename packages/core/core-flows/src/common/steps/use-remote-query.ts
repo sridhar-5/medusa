@@ -50,7 +50,13 @@ export const useRemoteQueryStepId = "use-remote-query"
 /**
  * This step fetches data across modules using the remote query.
  *
- * Learn more in the [Remote Query documentation](https://docs.medusajs.com/advanced-development/modules/remote-query).
+ * Learn more in the [Remote Query documentation](https://docs.medusajs.com/learn/advanced-development/module-links/query).
+ * 
+ * :::note
+ * 
+ * This step is deprecated. Use {@link useQueryGraphStep} instead.
+ * 
+ * :::
  *
  * @example
  *

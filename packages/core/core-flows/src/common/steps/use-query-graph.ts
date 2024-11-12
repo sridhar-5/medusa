@@ -26,6 +26,91 @@ const step = createStep(
   }
 )
 
+/**
+ * This step fetches data across modules using the Query.
+ *
+ * Learn more in the [Query documentation](https://docs.medusajs.com/learn/advanced-development/module-links/query).
+ * 
+ * @example
+ * To retrieve a list of records of a data model:
+ *
+ * ```ts
+ * import {
+ *   createWorkflow
+ * } from "@medusajs/framework/workflows-sdk"
+ * import {
+ *   useQueryGraphStep
+ * } from "@medusajs/medusa/core-flows"
+ *
+ * const helloWorldWorkflow = createWorkflow(
+ *   "hello-world",
+ *   () => {
+ *     const { data: products } = useQueryGraphStep({
+ *       entity: "product",
+ *       fields: [
+ *         "*",
+ *         "variants.*"
+ *       ]
+ *     })
+ *   }
+ * )
+ * ```
+ *
+ * To retrieve a single item instead of a an array:
+ *
+ * ```ts
+ * const { data: products } = useQueryGraphStep({
+ *   entity: "product",
+ *   fields: [
+ *     "*",
+ *     "variants.*"
+ *   ],
+ *   filters: {
+ *     id: "123"
+ *   }
+ * })
+ * ```
+ *
+ * To throw an error if a record isn't found matching the specified ID:
+ *
+ * ```ts
+ * const { data: products } = useQueryGraphStep({
+ *   entity: "product",
+ *   fields: [
+ *     "*",
+ *     "variants.*"
+ *   ],
+ *   filters: {
+ *     id: "123"
+ *   },
+ *   options: {
+ *     throwIfKeyNotFound: true
+ *   }
+ * })
+ * ```
+ *
+ * To set pagination configurations:
+ *
+ * ```ts
+ * const { data: products } = useQueryGraphStep({
+ *   entity: "product",
+ *   fields: [
+ *     "*",
+ *     "variants.*"
+ *   ],
+ *   filters: {
+ *     id: "123"
+ *   },
+ *   pagination: {
+ *     take: 10,
+ *     skip: 10,
+ *     order: {
+ *       created_at: "DESC"
+ *     }
+ *   }
+ * })
+ * ```
+ */
 export const useQueryGraphStep = <const TEntry extends string>(
   input: UseQueryGraphStepInput<TEntry>
 ): ReturnType<StepFunction<UseQueryGraphStepInput<TEntry>, GraphResultSet<TEntry>>> =>
