@@ -376,9 +376,7 @@ const useActivityItems = (order: AdminOrder): Activity[] => {
             : edit.status === "canceled"
             ? edit.canceled_at
             : edit.created_at,
-        children: isConfirmed ? (
-          <OrderEditBody edit={edit} itemsMap={itemsMap} />
-        ) : null,
+        children: isConfirmed ? <OrderEditBody edit={edit} /> : null,
       })
     }
 
@@ -839,18 +837,12 @@ const ExchangeBody = ({
   )
 }
 
-const OrderEditBody = ({
-  edit,
-  itemsMap,
-}: {
-  edit: AdminOrderChange
-  itemsMap: Map<string, AdminOrderLineItem>
-}) => {
+const OrderEditBody = ({ edit }: { edit: AdminOrderChange }) => {
   const { t } = useTranslation()
 
   const [itemsAdded, itemsRemoved] = useMemo(
-    () => countItemsChange(edit.actions, itemsMap),
-    [edit, itemsMap]
+    () => countItemsChange(edit.actions),
+    [edit]
   )
 
   return (
@@ -873,10 +865,7 @@ const OrderEditBody = ({
 /**
  * Returns count of added and removed item quantity
  */
-function countItemsChange(
-  actions: AdminOrderChange["actions"],
-  itemsMap: Map<string, AdminOrderLineItem>
-) {
+function countItemsChange(actions: AdminOrderChange["actions"]) {
   let added = 0
   let removed = 0
 
@@ -885,20 +874,12 @@ function countItemsChange(
       added += action.details!.quantity as number
     }
     if (action.action === "ITEM_UPDATE") {
-      const newQuantity = action.details!.quantity as number
-      const originalQuantity: number | undefined = itemsMap.get(
-        action.details!.reference_id as string
-      )?.quantity
+      const quantityDiff = action.details!.quantity_diff as number
 
-      if (typeof originalQuantity === "number") {
-        const diff = Math.abs(newQuantity - originalQuantity)
-
-        if (newQuantity > originalQuantity) {
-          added += diff
-        }
-        if (newQuantity < originalQuantity) {
-          removed += diff
-        }
+      if (quantityDiff > 0) {
+        added += quantityDiff
+      } else {
+        removed += Math.abs(quantityDiff)
       }
     }
   })
