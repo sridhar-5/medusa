@@ -11,6 +11,7 @@ import { TwoColumnPageSkeleton } from "../../../components/common/skeleton"
 import { TwoColumnPage } from "../../../components/layout/pages"
 import { useDashboardExtension } from "../../../extensions"
 import { CampaignConfigurationSection } from "./components/campaign-configuration-section"
+import { CAMPAIGN_DETAIL_FIELDS } from "./constants"
 
 export const CampaignDetail = () => {
   const initialData = useLoaderData() as Awaited<
@@ -20,7 +21,7 @@ export const CampaignDetail = () => {
   const { id } = useParams()
   const { campaign, isLoading, isError, error } = useCampaign(
     id!,
-    { fields: "+promotions.id" },
+    { fields: CAMPAIGN_DETAIL_FIELDS },
     { initialData }
   )
 

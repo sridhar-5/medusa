@@ -21,8 +21,5 @@ export const variantLoader = async ({ params }: LoaderFunctionArgs) => {
 
   const query = variantDetailQuery(productId!, variantId!)
 
-  return (
-    queryClient.getQueryData<any>(query.queryKey) ??
-    (await queryClient.fetchQuery(query))
-  )
+  return queryClient.ensureQueryData(query)
 }

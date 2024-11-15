@@ -55,6 +55,7 @@ moduleIntegrationTestRunner<Service>({
         "product",
         "productVariant",
         "productOption",
+        "productOptionValue",
         "productType",
         "productImage",
         "productTag",
@@ -99,6 +100,15 @@ moduleIntegrationTestRunner<Service>({
             primaryKey: "id",
             serviceName: "product",
             field: "productOption",
+          },
+        },
+        productOptionValue: {
+          id: {
+            linkable: "product_option_value_id",
+            entity: "ProductOptionValue",
+            primaryKey: "id",
+            serviceName: "product",
+            field: "productOptionValue",
           },
         },
         productType: {

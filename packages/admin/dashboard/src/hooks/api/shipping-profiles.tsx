@@ -40,11 +40,14 @@ export const useCreateShippingProfile = (
 export const useShippingProfile = (
   id: string,
   query?: Record<string, any>,
-  options?: UseQueryOptions<
-    HttpTypes.AdminShippingProfileResponse,
-    FetchError,
-    HttpTypes.AdminShippingProfileResponse,
-    QueryKey
+  options?: Omit<
+    UseQueryOptions<
+      HttpTypes.AdminShippingProfileResponse,
+      FetchError,
+      HttpTypes.AdminShippingProfileResponse,
+      QueryKey
+    >,
+    "queryFn" | "queryKey"
   >
 ) => {
   const { data, ...rest } = useQuery({

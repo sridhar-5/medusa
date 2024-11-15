@@ -9,6 +9,7 @@ import { SingleColumnPageSkeleton } from "../../../components/common/skeleton"
 import { SingleColumnPage } from "../../../components/layout/pages"
 import { useDashboardExtension } from "../../../extensions"
 import { usePricePreferences } from "../../../hooks/api/price-preferences"
+import { REGION_DETAIL_FIELDS } from "./constants"
 
 export const RegionDetail = () => {
   const initialData = useLoaderData() as Awaited<
@@ -23,7 +24,7 @@ export const RegionDetail = () => {
     error: regionError,
   } = useRegion(
     id!,
-    { fields: "*payment_providers,*countries,+automatic_taxes" },
+    { fields: REGION_DETAIL_FIELDS },
     {
       initialData,
     }

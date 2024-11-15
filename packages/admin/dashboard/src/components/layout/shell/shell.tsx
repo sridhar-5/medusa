@@ -2,7 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog"
 
 import { SidebarLeft, TriangleRightMini, XMark } from "@medusajs/icons"
 import { IconButton, clx } from "@medusajs/ui"
-import { PropsWithChildren } from "react"
+import { PropsWithChildren, ReactNode } from "react"
 import { useTranslation } from "react-i18next"
 import { Link, Outlet, UIMatch, useMatches } from "react-router-dom"
 
@@ -45,18 +45,20 @@ const Gutter = ({ children }: PropsWithChildren) => {
 const Breadcrumbs = () => {
   const matches = useMatches() as unknown as UIMatch<
     unknown,
-    { crumb?: (data?: unknown) => string }
+    {
+      breadcrumb?: (match?: UIMatch) => string | ReactNode
+    }
   >[]
 
   const crumbs = matches
-    .filter((match) => Boolean(match.handle?.crumb))
+    .filter((match) => match.handle?.breadcrumb)
     .map((match) => {
       const handle = match.handle
 
-      let label: string | null = null
+      let label: string | ReactNode | undefined = undefined
 
       try {
-        label = handle.crumb!(match.data)
+        label = handle.breadcrumb?.(match)
       } catch (error) {
         // noop
       }
@@ -70,7 +72,7 @@ const Breadcrumbs = () => {
         path: match.pathname,
       }
     })
-    .filter(Boolean) as { label: string; path: string }[]
+    .filter(Boolean) as { label: string | ReactNode; path: string }[]
 
   return (
     <ol

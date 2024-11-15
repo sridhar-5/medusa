@@ -11,6 +11,7 @@ import { InventoryItemVariantsSection } from "./components/inventory-item-varian
 import { inventoryItemLoader } from "./loader"
 
 import { useDashboardExtension } from "../../../extensions"
+import { INVENTORY_DETAIL_FIELDS } from "./constants"
 
 export const InventoryDetail = () => {
   const { id } = useParams()
@@ -27,7 +28,7 @@ export const InventoryDetail = () => {
   } = useInventoryItem(
     id!,
     {
-      fields: "*variants,*variants.product,*variants.options",
+      fields: INVENTORY_DETAIL_FIELDS,
     },
     {
       initialData,

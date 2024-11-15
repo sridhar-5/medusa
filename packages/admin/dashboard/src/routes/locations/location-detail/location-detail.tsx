@@ -9,7 +9,7 @@ import { TwoColumnPageSkeleton } from "../../../components/common/skeleton"
 import { TwoColumnPage } from "../../../components/layout/pages"
 import { useDashboardExtension } from "../../../extensions"
 import LocationsFulfillmentProvidersSection from "./components/location-fulfillment-providers-section/location-fulfillment-providers-section"
-import { detailsFields } from "./const"
+import { LOCATION_DETAILS_FIELD } from "./constants"
 
 export const LocationDetail = () => {
   const initialData = useLoaderData() as Awaited<
@@ -22,7 +22,11 @@ export const LocationDetail = () => {
     isPending: isLoading,
     isError,
     error,
-  } = useStockLocation(location_id!, { fields: detailsFields }, { initialData })
+  } = useStockLocation(
+    location_id!,
+    { fields: LOCATION_DETAILS_FIELD },
+    { initialData }
+  )
 
   const { getWidgets } = useDashboardExtension()
 

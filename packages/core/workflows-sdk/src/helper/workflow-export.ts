@@ -519,21 +519,14 @@ function attachOnFinishReleaseEvents(
       ) || console
 
     if (logOnError) {
-      const TERMINAL_SIZE = process.stdout?.columns ?? 60
-      const separator = new Array(TERMINAL_SIZE).join("-")
-
       const workflowName = transaction.getFlow().modelId
-      const allWorkflowErrors = transaction
+      transaction
         .getErrors()
-        .map(
-          (err) =>
+        .forEach((err) =>
+          logger.error(
             `${workflowName}:${err?.action}:${err?.handlerType} - ${err?.error?.message}${EOL}${err?.error?.stack}`
+          )
         )
-        .join(EOL + separator + EOL)
-
-      if (allWorkflowErrors) {
-        logger.error(allWorkflowErrors)
-      }
     }
 
     await onFinish?.(args)

@@ -237,7 +237,12 @@ export const useProduct = (
   id: string,
   query?: Record<string, any>,
   options?: Omit<
-    UseQueryOptions<any, FetchError, any, QueryKey>,
+    UseQueryOptions<
+      HttpTypes.AdminProductResponse,
+      FetchError,
+      HttpTypes.AdminProductResponse,
+      QueryKey
+    >,
     "queryFn" | "queryKey"
   >
 ) => {
@@ -302,9 +307,13 @@ export const useUpdateProduct = (
 ) => {
   return useMutation({
     mutationFn: (payload) => sdk.admin.product.update(id, payload),
-    onSuccess: (data, variables, context) => {
-      queryClient.invalidateQueries({ queryKey: productsQueryKeys.lists() })
-      queryClient.invalidateQueries({ queryKey: productsQueryKeys.detail(id) })
+    onSuccess: async (data, variables, context) => {
+      await queryClient.invalidateQueries({
+        queryKey: productsQueryKeys.lists(),
+      })
+      await queryClient.invalidateQueries({
+        queryKey: productsQueryKeys.detail(id),
+      })
 
       options?.onSuccess?.(data, variables, context)
     },

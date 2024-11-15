@@ -3,12 +3,13 @@ import { LoaderFunctionArgs } from "react-router-dom"
 import { regionsQueryKeys } from "../../../hooks/api/regions"
 import { sdk } from "../../../lib/client"
 import { queryClient } from "../../../lib/query-client"
+import { REGION_DETAIL_FIELDS } from "./constants"
 
 const regionQuery = (id: string) => ({
   queryKey: regionsQueryKeys.detail(id),
   queryFn: async () =>
     sdk.admin.region.retrieve(id, {
-      fields: "*payment_providers,*countries,+automatic_taxes",
+      fields: REGION_DETAIL_FIELDS,
     }),
 })
 
