@@ -53,10 +53,10 @@ export const acceptOrderTransferValidationStep = createStep(
       throw new MedusaError(MedusaError.Types.NOT_ALLOWED, "Invalid token.")
     }
 
-    if (customer.id !== transferCustomerAction?.details!.reference_id) {
+    if (customer.id !== transferCustomerAction?.reference_id) {
       throw new MedusaError(
         MedusaError.Types.INVALID_DATA,
-        `Customer ${customer.id} didn't request this order transfer.`
+        `Order transfer is not requested for customer: ${customer.id}.`
       )
     }
   }
