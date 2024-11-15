@@ -14,6 +14,7 @@ medusaIntegrationTestRunner({
     let order
     let customer
     let user
+    let registeredCustomerToken
 
     beforeEach(async () => {
       const container = getContainer()
@@ -24,7 +25,7 @@ medusaIntegrationTestRunner({
 
       const seeders = await createOrderSeeder({ api, container })
 
-      const registeredCustomerToken = (
+      registeredCustomerToken = (
         await api.post("/auth/customer/emailpass/register", {
           email: "test@email.com",
           password: "password",
@@ -50,7 +51,7 @@ medusaIntegrationTestRunner({
     })
 
     describe("Transfer Order flow", () => {
-      it("should request order transfer successfully", async () => {
+      it("should pass order transfer flow from admin successfully", async () => {
         await api.post(
           `/admin/orders/${order.id}/transfer`,
           {
@@ -125,11 +126,15 @@ medusaIntegrationTestRunner({
           })
         )
 
-        // confirms the transfer
         await api.post(
-          `/admin/orders/${order.id}/transfer/confirm`,
+          `/store/orders/${order.id}/transfer/accept`,
           {},
-          adminHeaders
+          {
+            headers: {
+              Authorization: `Bearer ${registeredCustomerToken}`,
+              ...storeHeaders.headers,
+            },
+          }
         )
 
         const finalOrderResult = (
