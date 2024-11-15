@@ -1,5 +1,17 @@
 # @medusajs/workflows-sdk
 
+## 2.0.5
+
+### Patch Changes
+
+- [#10031](https://github.com/medusajs/medusa/pull/10031) [`1eef324af33cfb70b414ac564788f28dfd6d2c18`](https://github.com/medusajs/medusa/commit/1eef324af33cfb70b414ac564788f28dfd6d2c18) Thanks [@carlos-r-l-rodrigues](https://github.com/carlos-r-l-rodrigues)! - Fix set step failure for async steps
+
+- Updated dependencies [[`3e265229f2ae5c3d55f64a445574c13c40b52c14`](https://github.com/medusajs/medusa/commit/3e265229f2ae5c3d55f64a445574c13c40b52c14), [`1eef324af33cfb70b414ac564788f28dfd6d2c18`](https://github.com/medusajs/medusa/commit/1eef324af33cfb70b414ac564788f28dfd6d2c18)]:
+  - @medusajs/orchestration@2.0.5
+  - @medusajs/utils@2.0.5
+  - @medusajs/modules-sdk@2.0.5
+  - @medusajs/types@2.0.5
+
 ## 2.0.4
 
 ### Patch Changes

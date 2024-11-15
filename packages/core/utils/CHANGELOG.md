@@ -1,5 +1,14 @@
 # @medusajs/utils
 
+## 2.0.5
+
+### Patch Changes
+
+- [#10085](https://github.com/medusajs/medusa/pull/10085) [`3e265229f2ae5c3d55f64a445574c13c40b52c14`](https://github.com/medusajs/medusa/commit/3e265229f2ae5c3d55f64a445574c13c40b52c14) Thanks [@carlos-r-l-rodrigues](https://github.com/carlos-r-l-rodrigues)! - Improve event bus error handling
+
+- Updated dependencies []:
+  - @medusajs/types@2.0.5
+
 ## 2.0.4
 
 ### Patch Changes

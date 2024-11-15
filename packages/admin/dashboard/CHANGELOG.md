@@ -1,5 +1,22 @@
 # @medusajs/dashboard
 
+## 2.0.5
+
+### Patch Changes
+
+- [#10117](https://github.com/medusajs/medusa/pull/10117) [`8ed3d87c23c5b9e23d225f5463e3ab11abd5b6a0`](https://github.com/medusajs/medusa/commit/8ed3d87c23c5b9e23d225f5463e3ab11abd5b6a0) Thanks [@kasperkristensen](https://github.com/kasperkristensen)! - fix(dashboard): Add missing inventory_item.list.\* widgets
+
+- [#10079](https://github.com/medusajs/medusa/pull/10079) [`493d242c1259cdc68ecdce5f0f9d7885cbd67094`](https://github.com/medusajs/medusa/commit/493d242c1259cdc68ecdce5f0f9d7885cbd67094) Thanks [@kasperkristensen](https://github.com/kasperkristensen)! - fix(dashboard): Ensure Breadcrumbs don't display stale data
+
+- [#10098](https://github.com/medusajs/medusa/pull/10098) [`a153bc477c421cd3cfc6f2cb7e30f2f3661f5922`](https://github.com/medusajs/medusa/commit/a153bc477c421cd3cfc6f2cb7e30f2f3661f5922) Thanks [@kasperkristensen](https://github.com/kasperkristensen)! - fix(admin-shared,dashboard): Add missing Injection Zones and remove unused zones"
+
+- [#10082](https://github.com/medusajs/medusa/pull/10082) [`dea86d8c8774d5badadefbc92352d5145245a22f`](https://github.com/medusajs/medusa/commit/dea86d8c8774d5badadefbc92352d5145245a22f) Thanks [@kasperkristensen](https://github.com/kasperkristensen)! - fix(dashboard): Fix active nav link styling for built-in routes
+
+- Updated dependencies [[`a153bc477c421cd3cfc6f2cb7e30f2f3661f5922`](https://github.com/medusajs/medusa/commit/a153bc477c421cd3cfc6f2cb7e30f2f3661f5922)]:
+  - @medusajs/admin-shared@2.0.5
+  - @medusajs/js-sdk@2.0.5
+  - @medusajs/icons@2.0.5
+
 ## 2.0.4
 
 ### Patch Changes
