@@ -14,7 +14,7 @@ medusaIntegrationTestRunner({
     let order
     let customer
     let user
-    let registeredCustomerToken
+    let signedInCustomerToken
     let storeHeaders
 
     beforeEach(async () => {
@@ -26,7 +26,7 @@ medusaIntegrationTestRunner({
 
       const seeders = await createOrderSeeder({ api, container })
 
-      registeredCustomerToken = (
+      const registeredCustomerToken = (
         await api.post("/auth/customer/emailpass/register", {
           email: "test@email.com",
           password: "password",
@@ -47,6 +47,13 @@ medusaIntegrationTestRunner({
           }
         )
       ).data.customer
+
+      signedInCustomerToken = (
+        await api.post("/auth/customer/emailpass", {
+          email: "test@email.com",
+          password: "password",
+        })
+      ).data.token
 
       order = seeders.order
     })
@@ -133,7 +140,7 @@ medusaIntegrationTestRunner({
           { token: orderChangesResult[0].actions[0].details.token },
           {
             headers: {
-              authorization: `Bearer ${registeredCustomerToken}`,
+              authorization: `Bearer ${signedInCustomerToken}`,
               ...storeHeaders.headers,
             },
           }
