@@ -15,13 +15,14 @@ medusaIntegrationTestRunner({
     let customer
     let user
     let registeredCustomerToken
+    let storeHeaders
 
     beforeEach(async () => {
       const container = getContainer()
 
       user = (await createAdminUser(dbConnection, adminHeaders, container)).user
       const publishableKey = await generatePublishableKey(container)
-      const storeHeaders = generateStoreHeaders({ publishableKey })
+      storeHeaders = generateStoreHeaders({ publishableKey })
 
       const seeders = await createOrderSeeder({ api, container })
 
@@ -128,7 +129,7 @@ medusaIntegrationTestRunner({
 
         await api.post(
           `/store/orders/${order.id}/transfer/accept`,
-          {},
+          { token: orderChangesResult[0].actions[0].details.token },
           {
             headers: {
               Authorization: `Bearer ${registeredCustomerToken}`,
