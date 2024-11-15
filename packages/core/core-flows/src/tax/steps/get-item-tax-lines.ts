@@ -53,6 +53,7 @@ function normalizeTaxModuleContext(
     id: orderOrCart.customer.id,
     email: orderOrCart.customer.email,
     customer_groups: orderOrCart.customer.groups?.map((g) => g.id) || [],
+    metadata: orderOrCart.customer.metadata,
   }
 
   return {
@@ -63,6 +64,7 @@ function normalizeTaxModuleContext(
       address_2: address.address_2,
       city: address.city,
       postal_code: address.postal_code,
+      metadata: address.metadata,
     },
     customer,
     is_return: isReturn ?? false,

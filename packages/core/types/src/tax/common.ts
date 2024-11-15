@@ -448,6 +448,11 @@ export interface TaxCalculationContext {
      * The postal code.
      */
     postal_code?: string
+
+    /**
+     * Address metadata.
+     */
+    metadata?: Record<string, unknown> | null
   }
 
   /**
@@ -468,6 +473,11 @@ export interface TaxCalculationContext {
      * The groups that the customer belongs to.
      */
     customer_groups: string[]
+
+    /**
+     * Customer metadata.
+     */
+    metadata?: Record<string, unknown> | null
   }
 
   /**

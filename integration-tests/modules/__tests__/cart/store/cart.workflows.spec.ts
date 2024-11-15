@@ -11,6 +11,7 @@ import {
   updateLineItemInCartWorkflow,
   updateLineItemsStepId,
   updatePaymentCollectionStepId,
+  updateTaxLinesWorkflow,
 } from "@medusajs/core-flows"
 import {
   ICartModuleService,
@@ -2157,6 +2158,44 @@ medusaIntegrationTestRunner({
               message: `Shipping options with IDs ${shippingOption.id} do not have a price`,
             }),
           ])
+        })
+      })
+
+      describe("updateTaxLinesWorkflow", () => {
+        it.only("should create a payment collection and link it to cart", async () => {
+          const cart = await cartModuleService.createCarts({
+            currency_code: "dkk",
+            region_id: defaultRegion.id,
+            shipping_address: {
+              metadata: {
+                testing_tax: true,
+              },
+            },
+            items: [
+              {
+                quantity: 1,
+                unit_price: 5000,
+                title: "Test item",
+              },
+            ],
+          })
+
+          const { transaction } = await updateTaxLinesWorkflow(
+            appContainer
+          ).run({
+            input: {
+              cart_id: cart.id,
+            },
+            throwOnError: false,
+          })
+
+          expect(
+            // @ts-ignore
+            transaction.context.invoke["use-remote-query"].output.output
+              .shipping_address.metadata
+          ).toEqual({
+            testing_tax: true,
+          })
         })
       })
     })

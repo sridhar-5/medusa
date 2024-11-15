@@ -47,6 +47,7 @@ const cartFields = [
   "shipping_methods.amount",
   "customer.id",
   "customer.email",
+  "customer.metadata",
   "customer.groups.id",
   "shipping_address.id",
   "shipping_address.address_1",
@@ -56,6 +57,7 @@ const cartFields = [
   "shipping_address.country_code",
   "shipping_address.region_code",
   "shipping_address.province",
+  "shipping_address.metadata",
 ]
 
 export type UpdateTaxLinesWorkflowInput = {
