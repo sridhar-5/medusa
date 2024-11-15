@@ -2117,7 +2117,7 @@ export interface OrderChangeDTO {
   /**
    * The type of the order change
    */
-  change_type?: "return" | "exchange" | "claim" | "edit"
+  change_type?: "return" | "exchange" | "claim" | "edit" | "transfer"
 
   /**
    * The ID of the associated order
